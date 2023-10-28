@@ -7,6 +7,7 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family:'Montserrat', sans-serif;
+  overflow-x: hidden;
 }
 
 a{
@@ -60,10 +61,11 @@ html,body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 60vh;
+  height: 100vh;
   background-image: url("../public/pxfuel.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  
   z-index: -6;
 
 }
@@ -93,7 +95,20 @@ html,body{
 }
 
 .carousel-cont{
-  height: 50%;
+  height: 60%;
   display: flex;
+  flex-direction: column;
   align-items: center;
+}
+
+.first-card-image{
+  height: 80px;
+}
+
+.other-cards{
+  display: flex;
+}
+
+.card-images{
+  height: 80px;
 }

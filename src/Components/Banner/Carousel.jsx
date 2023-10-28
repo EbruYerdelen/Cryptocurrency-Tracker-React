@@ -2,8 +2,8 @@ import axios from "axios";
 import React from "react";
 import { CryptoState } from "../../CryptoContext";
 import { TrendingCoins } from "../../config/api";
-import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
+import Card from "./Card";
 
 const Carousel = () => {
   const [trending, setTrending] = React.useState([]);
@@ -13,50 +13,40 @@ const Carousel = () => {
     const { data } = await axios.get(TrendingCoins(currency));
     setTrending(data);
   };
+
+  console.log(trending);
   React.useEffect(() => {
     fetchTrendingcoins();
   }, [currency]);
 
 
-
-  const items = trending.map((eachCoin) => {
+  const firstRemovedArr = trending.slice(1);
+  console.log(firstRemovedArr);
+  const items = firstRemovedArr.map((eachCoin) => {
     return (
       <Link className="carousel-coin" to={`/coins/${eachCoin.id}`}>
-        <img 
-          src={eachCoin?.image}
-          alt={eachCoin.name}
-          style={{marginBottom: 10, height: 100}}
-          
-        />
+        <Card key={eachCoin.id} alldata={eachCoin}/>
       </Link>
     )
   })
 
 
-  const responsive = {
-    0: {
-    item: 2
-    },
-    512: {
-      item: 4
-    }
-}
-
 
 
   return (
     <div className="carousel-cont">
-      <AliceCarousel
-        mouseTracking
-        infinite
-        autoPlayInterval={1000}
-        animationDuration={1000}
-        disableDotsControls
-        disableButtonsControls
-        responsive={responsive}
-        autoPlay
-        items={items}
-      />
+      <div className="first-card">
+        <img src={trending[0]?.image} className="first-card-image" />
+        <p className="first-card-symbol">{trending[0]?.symbol}</p>
+        <p className="first-card-profit">
+          {trending[0]?.price_change_percentage_24h >= 0 && "+"}
+          {trending[0]?.price_change_percentage_24h?.toFixed(2)}%
+        </p>
+        <p className="first-card-value"></p>
+      </div>
+      <div className="other-cards">
+        {items}
+      </div>
     </div>
   );
 };
@@ -76,3 +66,13 @@ export default Carousel;
     FetchTrendCoins();
   }, [currency]);
  */
+
+    /*const responsive = {
+      0: {
+        item: 2,
+      },
+      512: {
+        item: 4,
+      },
+    };
+   */
