@@ -4,16 +4,10 @@ import { CryptoState } from "../../CryptoContext";
 import { TrendingCoins } from "../../config/api";
 import { Link } from "react-router-dom";
 import Card from "./Card";
+import numberWithCommas from "../../utils/NumberWithComas";
 
 
 
-export function numberWithCommas(x) {
-    
-
-    if (typeof x === "number") {
-      return x.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    }
-  }
 
 
 
@@ -22,20 +16,19 @@ const Carousel = () => {
   const [trending, setTrending] = React.useState([]);
   const { currency ,symbol } = CryptoState();
 
-  const fetchTrendingcoins = async () => {
-    const { data } = await axios.get(TrendingCoins(currency));
-    setTrending(data);
-  };
 
   console.log(trending);
   React.useEffect(() => {
+    const fetchTrendingcoins = async () => {
+      const { data }  = await axios.get(TrendingCoins(currency)); //you are extracting data property inside of the object returned by api request
+      setTrending(data);
+    };
     fetchTrendingcoins();
   }, [currency]);
 
 
-  const firstRemovedArr = trending.slice(1);
-  console.log(firstRemovedArr);
-  const items = firstRemovedArr.map((eachCoin) => {
+
+  const items = trending.slice(1).map((eachCoin) => {
     return (
       <Link
         className="carousel-coin"
@@ -45,7 +38,7 @@ const Carousel = () => {
         <Card alldata={eachCoin} />
       </Link>
     );
-  })
+  });
 
 
 
@@ -53,22 +46,26 @@ const Carousel = () => {
 
 
   return (
-    <div className="carousel-cont">
-      <div className="first-card">
-        <img src={trending[0]?.image} className="first-card-image" />
-        <div className="first-card-info">
-            <p className="first-card-symbol">{trending[0]?.symbol}</p>
-            <p className="first-card-profit">
-            {trending[0]?.price_change_percentage_24h >= 0 && "+"}
-            {trending[0]?.price_change_percentage_24h?.toFixed(2)}%
-            </p>
-            <p className="first-card-value">
-            {symbol} {numberWithCommas(trending[0]?.current_price.toFixed(2))}
-            </p>
-        </div>
+      <div className="carousel-cont">
+        <Link to={`/coins/${trending[0]?.id}`} className="first-card-wrap">
+          <div className="first-card">
+            <img src={trending[0]?.image} className="first-card-image" />
+            <div className="first-card-info">
+              <p className="first-card-symbol">{trending[0]?.symbol}</p>
+            <p className={trending[0]?.price_change_percentage_24h >= 0 ? "first-card-profit":"first-card-loss"}>
+                {trending[0]?.price_change_percentage_24h >= 0 && "+"}
+                {trending[0]?.price_change_percentage_24h?.toFixed(2)}%
+              </p>
+              <p className="first-card-value">
+                {symbol}{" "}
+                {numberWithCommas(Number(trending[0]?.current_price.toFixed(2)))}
+              </p>
+            </div>
+          </div>
+        </Link>
+          <div className="other-cards">{items}</div>
       </div>
-      <div className="other-cards">{items}</div>
-    </div>
+    
   );
 };
 

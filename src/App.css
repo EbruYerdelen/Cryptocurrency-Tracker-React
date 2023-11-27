@@ -129,7 +129,7 @@ html,body{
   color: white;
   cursor: pointer;
   border-radius: 10px;
-  box-shadow: inset 1px 3px 8px 0px rgba(17, 16, 16, 0.815);
+  box-shadow: inset 1px 3px 8px 0px rgba(10, 10, 10, 0.815);
 }
 
 
@@ -144,8 +144,14 @@ html,body{
   color: rgb(0, 140, 255);
   font-size: 11px;
   font-weight: 500;
-
 }
+
+.loss{
+  color:rgb(201, 4, 4) ;
+  font-size: 11px;
+  font-weight: 500;
+}
+
 
 .value{
   font-size: 14px;
@@ -163,7 +169,7 @@ html,body{
 
 }
 
-.first-card{
+.first-card,.first-card-wrap{
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -176,7 +182,7 @@ html,body{
   );
   border-radius: 20px;
   box-shadow: inset 6px 3px 8px 0px rgba(0, 0, 0, 0.644);
-
+  color: white;
 }
 
 .first-card-image{
@@ -189,14 +195,23 @@ html,body{
 .first-card-symbol{
   text-transform: uppercase;
   font-size: 50px;
+  
 }
 
 .first-card-profit{
   color: rgb(0, 140, 255);
   font-size: 22px;
   font-weight: 500;
-
 }
+
+
+.first-card-loss{
+  color:rgb(201, 4, 4);
+  font-size: 22px;
+  font-weight: 500;
+}
+
+
 .first-card-value{
   font-size: 35px;
   font-weight: 600;
@@ -206,8 +221,14 @@ html,body{
 
 @media screen and (max-width: 890px){
 
+
+
+.banner-container{
+  align-items: center;
+  flex-direction: column
+}
+
 .carousel-cont{
-  min-height: 280px;
   flex-direction: column;
   row-gap: 30px;
   align-items: center;
@@ -239,6 +260,7 @@ html,body{
 
 .other-cards{
   display:flex;
-  width: 90%;
+  flex-direction: row;
+  width: min-content;
 }
 }
