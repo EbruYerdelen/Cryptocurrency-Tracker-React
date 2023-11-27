@@ -3,11 +3,17 @@ import { CryptoState } from '../CryptoContext';
 import { CoinList } from '../config/api';
 import axios from 'axios';
 import numberWithCommas from '../utils/NumberWithComas';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CoinsTable = () => {
   const [coinList, setCoinList] = React.useState([]);
   const { currency, symbol } = CryptoState();
+  const eachListNavigate = useNavigate();
+
+
+  function listRedirect(id) {
+    eachListNavigate(`/coins/${id}`);
+  }
 
   React.useEffect(() => {
     const fetchCoinList = async () => {
@@ -23,12 +29,7 @@ const CoinsTable = () => {
 
   const coins = coinList.slice(95).map((coinsInList) => {
     return (
-      <Link
-        className="each-coin-list"
-        to={`/coins/${coinsInList.id}`}
-        key={coinsInList.id}
-      >
-        <tr>
+      <tr key={coinsInList.id} onClick={listRedirect(coinsInList?.id)}>
           <td>{coinsInList?.name}</td>
           <td>
             {symbol}{" "}
@@ -36,17 +37,14 @@ const CoinsTable = () => {
           </td>
           <td
             className={
-              coinsInList?.price_change_percentage_24h >= 0
-                ? "profit"
-                : "loss"
+              coinsInList?.price_change_percentage_24h >= 0 ? "profit" : "loss"
             }
           >
             {coinsInList?.price_change_percentage_24h >= 0 && "+"}
             {coinsInList?.price_change_percentage_24h?.toFixed(2)}%
           </td>
           <td>{coinsInList?.market_cap}</td>
-        </tr>
-      </Link>
+      </tr>
     );
   })
 
@@ -62,7 +60,9 @@ const CoinsTable = () => {
             <th>Market Cap</th>
           </tr>
         </thead>
-        {coins}
+        <tbody>
+          {coins}
+        </tbody>
       </table>
     </div>
   );
