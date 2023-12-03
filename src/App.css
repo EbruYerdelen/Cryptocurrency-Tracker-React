@@ -19,6 +19,8 @@ html,body{
   height: 100vh;
   background-color: rgba(8, 13, 39, 0.918);
   color: white;
+  overflow-x: hidden;
+
 }
 
 
@@ -215,6 +217,84 @@ html,body{
 .first-card-value{
   font-size: 35px;
   font-weight: 600;
+
+}
+
+.table-container{
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.table-profit{
+  color: rgb(0, 140, 255);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+.table-loss{
+  color:rgb(201, 4, 4);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.table-images{
+  width: 45px;
+  height: 45px;
+}
+
+.first-td-cont{
+  display: flex;
+  column-gap: 15px;
+}
+
+.firsttd-name-symbol{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.firsttd-symbol{
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+
+.firsttd-name{
+  color: rgb(158, 158, 158);
+}
+
+table{
+  margin-top: 15px;
+  width: 90%;
+  border-spacing: 0;
+}
+
+
+td{
+  text-align: center;
+  padding: 25px;
+  border-bottom: 1px solid #a5a5a5de;
+}
+
+.coin-rows:hover{
+  background-color: rgba(6, 10, 31, 0.918);
+
+}
+
+.head-row{
+  background: linear-gradient(
+    60deg,
+    rgba(22, 65, 90, 0.842),
+    rgba(22, 67, 85, 0.808)
+    
+  );
+
+}
+
+th{
+  padding: 20px;
+  border-bottom: 1px solid #888787de;
 
 }
 

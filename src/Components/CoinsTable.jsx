@@ -27,45 +27,62 @@ const CoinsTable = () => {
   console.log(coinList);
 
 
-  const coins = coinList.slice(95).map((coinsInList) => {
+  const coins = coinList.slice(0 , 11).map((coinsInList) => {
     return (
-      <tr key={coinsInList.id} onClick={listRedirect(coinsInList?.id)}>
-          <td>{coinsInList?.name}</td>
-          <td>
-            {symbol}{" "}
-            {numberWithCommas(Number(coinsInList?.current_price.toFixed(2)))}
-          </td>
-          <td
-            className={
-              coinsInList?.price_change_percentage_24h >= 0 ? "profit" : "loss"
-            }
-          >
-            {coinsInList?.price_change_percentage_24h >= 0 && "+"}
-            {coinsInList?.price_change_percentage_24h?.toFixed(2)}%
-          </td>
-          <td>{coinsInList?.market_cap}</td>
+      <tr
+        className="coin-rows"
+        key={coinsInList.id}
+        onClick={() => listRedirect(coinsInList?.id)}
+      >
+        <td className="first-td">
+          <div className="first-td-cont">
+            <img
+              className="table-images"
+              src={coinsInList?.image}
+              alt="coin-image"
+            />{" "}
+            <div className="firsttd-name-symbol">
+              <div className='firsttd-symbol'>{coinsInList?.symbol}</div>
+              <div className='firsttd-name'>{coinsInList?.name}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          {symbol}{" "}
+          {numberWithCommas(Number(coinsInList?.current_price.toFixed(2)))}
+        </td>
+        <td
+          className={
+            coinsInList?.price_change_percentage_24h >= 0
+              ? "table-profit"
+              : "table-loss"
+          }
+        >
+          {coinsInList?.price_change_percentage_24h >= 0 && "+"}
+          {coinsInList?.price_change_percentage_24h?.toFixed(2)}%
+        </td>
+        <td>{coinsInList?.market_cap}</td>
       </tr>
     );
   })
 
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Coin</th>
-            <th>Price</th>
-            <th>24h Change</th>
-            <th>Market Cap</th>
-          </tr>
-        </thead>
-        <tbody>
-          {coins}
-        </tbody>
-      </table>
+    <div className="table-container">
+        <table>
+          <thead>
+            <tr className="head-row">
+              <th>Coin</th>
+              <th>Price</th>
+              <th>24h Change</th>
+              <th>Market Cap</th>
+            </tr>
+          </thead>
+          <tbody>{coins}</tbody>
+        </table>
     </div>
   );
 }
 
 export default CoinsTable
+
