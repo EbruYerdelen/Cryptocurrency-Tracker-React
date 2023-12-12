@@ -9,6 +9,11 @@ const CoinsTable = () => {
   const [coinList, setCoinList] = React.useState([]);
   const { currency, symbol } = CryptoState();
   const eachListNavigate = useNavigate();
+  // Tasks 
+  // 1. Create a state to get the value of input 
+  // 2. Add value and onChnage in the input
+  // 3. Create a function to filter the array,
+  //    and show only those coins that match the user's search
 
 
   function listRedirect(id) {
@@ -73,7 +78,7 @@ const CoinsTable = () => {
   return (
     <div className="table-container">
       <h2 className='table-header'>Cryptocurrency Prices by Market Cap</h2>
-      <input type='text' id='coinSearch' name='coinSearch' placeholder='Enter a Cryptocurrency..'/>
+      <input type='text' id='coinSearch' name='coinSearch' placeholder='Enter a Cryptocurrency..'/> 
         <table>
           <thead>
             <tr className="head-row">
