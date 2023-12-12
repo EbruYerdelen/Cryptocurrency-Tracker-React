@@ -42,8 +42,8 @@ const CoinsTable = () => {
               alt="coin-image"
             />{" "}
             <div className="firsttd-name-symbol">
-              <div className='firsttd-symbol'>{coinsInList?.symbol}</div>
-              <div className='firsttd-name'>{coinsInList?.name}</div>
+              <div className="firsttd-symbol">{coinsInList?.symbol}</div>
+              <div className="firsttd-name">{coinsInList?.name}</div>
             </div>
           </div>
         </td>
@@ -61,7 +61,10 @@ const CoinsTable = () => {
           {coinsInList?.price_change_percentage_24h >= 0 && "+"}
           {coinsInList?.price_change_percentage_24h?.toFixed(2)}%
         </td>
-        <td>{coinsInList?.market_cap}</td>
+        <td>
+          {symbol}{" "}
+          {numberWithCommas(Number(coinsInList?.market_cap.toFixed(2)))}
+        </td>
       </tr>
     );
   })
@@ -69,6 +72,8 @@ const CoinsTable = () => {
 
   return (
     <div className="table-container">
+      <h2 className='table-header'>Cryptocurrency Prices by Market Cap</h2>
+      <input type='text' id='coinSearch' name='coinSearch' placeholder='Enter a Cryptocurrency..'/>
         <table>
           <thead>
             <tr className="head-row">

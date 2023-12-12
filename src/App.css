@@ -76,6 +76,7 @@ html,body{
   background-image: url("../public/12980762_5096160.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  box-shadow: 1px 1px 10px 0px rgba(10, 10, 10, 0.719);
 
 }
 
@@ -221,10 +222,44 @@ html,body{
 }
 
 .table-container{
+  padding-top: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
   overflow-x: auto;
 }
+
+.table-header{
+  font-weight: 400;
+  font-size: 2.3rem;
+  text-align: center;
+}
+
+input{
+  padding: 15px;
+  height: 3.4rem;
+  width: 90%;
+  background-color:rgba(8, 13, 39, 0.918) ;
+  border: 1px solid rgb(128, 128, 128);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  outline: none;
+  transition: 0.5s ;
+  
+}
+
+input::placeholder{
+  color:rgb(235, 234, 234);
+}
+input:focus{
+  border: 1px solid white;
+}
+
+
+
 
 .table-profit{
   color: rgb(0, 140, 255);
@@ -275,6 +310,10 @@ td{
   text-align: center;
   padding: 25px;
   border-bottom: 1px solid #a5a5a5de;
+}
+
+.coin-rows{
+  cursor: pointer;
 }
 
 .coin-rows:hover{
